@@ -18,6 +18,16 @@ module.exports.getUser = (req, res)=>{
 module.exports.deleteU = (req, res) => {
     const {userId} = req.params;
     const user = User.findOne(Number(userId));
-    const result = user.deleteUser();
-    res.send(User.findAll());
+    if(user){
+        user.deleteUser();
+        res.status(200).end();
+    } else{
+        res.status(404).end();
+    }
+}
+module.exports.updateUser = (req,res) => {
+    const {userId} = req.params;
+    const user = User.findOne(Number(userId));
+    const result = user.updateUser(req.body);
+    res.send();
 }

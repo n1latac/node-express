@@ -25,4 +25,7 @@ module.exports = class User {
     deleteUser(){
         return db.delete(this.id)
     }
+    updateUser(data){
+        return db.set(this.id, {...this, ...data});   
+    }
 }
